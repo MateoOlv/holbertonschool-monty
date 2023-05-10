@@ -11,6 +11,7 @@ int _digit(char string[])
             i++;
         if (isdigit(string[i]) == 0)
             return (0);
+        i++;
     }
-    return (0);
+    return (1);
 }
