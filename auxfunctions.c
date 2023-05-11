@@ -16,14 +16,20 @@ int _digit(char string[])
     return (1);
 }
 
-void frees(stack_t *stack)
+void frees(stack_t **stack)
 {
-    stack_t *tmp;
+    stack_t *current, *next;
 
-    while (stack != NULL)
+    if (!stack || !*stack)
     {
-        tmp = stack;
-        stack = stack->next;
-        free(tmp);
+        return;
     }
+    current = *stack;
+    while (current != NULL)
+    {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+    *stack = NULL;
 }
