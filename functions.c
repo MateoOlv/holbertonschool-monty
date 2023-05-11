@@ -2,7 +2,6 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *line = malloc(sizeof(stack_t));
-	char *DELIM[] = {" \n\t\r\a"};
 	char *token = strtok(NULL, DELIM);
 
 	if (!line) {
@@ -10,7 +9,7 @@ void _push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	if (!token || !_isdigit(token)) {
+	if (!token || !_digit(token)) {
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -27,7 +26,8 @@ void _push(stack_t **stack, unsigned int line_number)
 void _pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *line = *stack;
-
+	(void)line_number;
+	
 	while (line)
 	{
 		printf("%d\n", line->n);

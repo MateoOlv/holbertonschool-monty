@@ -1,5 +1,7 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MONTY_H
+#define MONTY_H
+
+#define DELIM " \n\t\r\a"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +11,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
-
+#include <ctype.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -40,5 +42,9 @@ typedef struct instruction_s
 } instruction_t;
 
 int _digit(char string[]);
-
+void _push(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number);
+void frees(stack_t *stack);
+int _digit(char string[]);
 #endif
