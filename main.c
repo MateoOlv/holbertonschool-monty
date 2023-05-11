@@ -59,7 +59,7 @@ int main(int argc, char **argv)
     fclose(input_file);
     free(line);
     free(token);
-    frees(&stack);
+    frees(stack);
 
     return 0;
 }
