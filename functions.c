@@ -10,7 +10,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	char *token = strtok(NULL, DELIM);
 	int n2 = 0;
 
-	stack_t *line = malloc(sizeof(stack_t));
+	line = malloc(sizeof(stack_t));
 	if (!line)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
