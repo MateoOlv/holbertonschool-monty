@@ -2,9 +2,10 @@
 
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *line = malloc(sizeof(stack_t));
+	stack_t *line = *stack;
 	char *token = strtok(NULL, DELIM);
 
+	line = malloc(sizeof(stack_t));
 	if (!line) {
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
@@ -71,9 +72,5 @@ void _pop(stack_t **stack, unsigned int line_number)
 		*stack = NULL;
 	}
 	tmp = (*stack)->next;
-		free(*stack);
-	*stack = tmp;
-	if (!(*stack))
-		return;
-	(*stack)->prev = NULL;
+	
 }
