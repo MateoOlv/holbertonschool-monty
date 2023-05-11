@@ -17,9 +17,9 @@ int get_function(stack_t **stack)
 
 	while (i < 4)
 	{
-		if (strcmp(s, ops[i].op) == 0)
+		if (strcmp(s, func[i].opcode) == 0)
 		{
-			return (ops[i].f);
+			return (func[i].f);
 		}
 		i++;
 	}
