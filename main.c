@@ -42,6 +42,7 @@ int main(int argc, char **argv)
     }
     while (getline(&line, &line_size, input_file) != -1)
     {
+	    line_number++;
         token = strtok(line, DELIM);
         if (!token)
         {
