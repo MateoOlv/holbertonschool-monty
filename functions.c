@@ -1,26 +1,26 @@
 #include "monty.h"
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *line = malloc(sizeof(stack_t));
-	char *token = strtok(NULL, DELIM);
+    char *token = strtok(NULL, DELIM);
+	
+    if (!token || !isdigit(*token))
+    {
+        fprintf(stderr, "L%u: usage: push integer\n", line_number);
+        exit(EXIT_FAILURE);
+    }
+    stack_t *new_node = malloc(sizeof(stack_t));
+    if (!new_node)
+    {
+        fprintf(stderr, "Error: malloc failed\n");
+        exit(EXIT_FAILURE);
+    }
+    new_node->n = atoi(token);
+    new_node->prev = NULL;
+    new_node->next = *stack;
+    if (*stack)
+        (*stack)->prev = new_node;
 
-	if (!line) {
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-
-	if (!token || !_digit(token)) {
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-
-	line->n = atoi(token);
-	line->prev = NULL;
-	line->next = *stack;
-	if (*stack) {
-		(*stack)->prev = line;
-	}
-	*stack = line;
+    *stack = new_node;
 }
 
 void _pall(stack_t **stack, unsigned int line_number)
