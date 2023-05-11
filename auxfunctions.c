@@ -15,6 +15,7 @@ int _digit(char string[])
     }
     return (1);
 }
+
 void frees(stack_t *stack)
 {
     stack_t *tmp;
