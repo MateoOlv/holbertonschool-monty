@@ -7,6 +7,9 @@ void (*get_func(char *op))(stack_t **stack, unsigned int line_number)
 		{"push", _push},
 		{"pall", _pall},
 		{"pint", _pint},
+        {"pint", _swap},
+        {"pint", _add},
+        {"pint", _nop},
 		{NULL, NULL}
 	};
     for (i = 0; func[i].opcode != NULL; i++)
