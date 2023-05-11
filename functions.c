@@ -1,4 +1,5 @@
 #include "monty.h"
+
 void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *line = malloc(sizeof(stack_t));
