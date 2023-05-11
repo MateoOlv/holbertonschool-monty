@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 		token = strtok(buffer, DELIM);
 		if (!token)
 			continue;
-		f = get_opcode(token);
+		f = get_func(token);
 		if (!f)
 		{
 			fprintf(stderr, "L%u: unknown instruction %s\n", i, token);
