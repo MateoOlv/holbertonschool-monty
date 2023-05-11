@@ -30,12 +30,12 @@ void _pall(stack_t **stack, unsigned int line_number)
 
 	while (line)
 	{
-		printf("%dn", line->n);
+		printf("%d\n", line->n);
 		line = line->next;
 	}
 }
 
-void _pint(stack_t **stack, unsigned int line_number);
+void _pint(stack_t **stack, unsigned int line_number)
 {
 	if (!(*stack))
 	{
