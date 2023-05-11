@@ -1,29 +1,58 @@
-#include "main.h"
-int main(int argv, char args[])
+#include "monty.h"
+void (*get_func(char *op))(stack_t **stack, unsigned int line_number)
 {
+	int i;
 
-}
-int get_function(stack_t **stack)
-{
-    int i = 0;
-    instruction_t func {
-		{"pall", _pall},
+		instruction_t func[] = {
 		{"push", _push},
+		{"pall", _pall},
 		{"pint", _pint},
-		{"pop", _pop},
 		{NULL, NULL}
 	};
-    	int i = 0;
+    for (i = 0; func[i].opcode != NULL; i++)
+    {
+        if (strcmp(func[i].opcode, op) == 0)
+            return func[i].f;
+    }
+	exit(EXIT_FAILURE);
+}
+int main(int argc, char **argv)
+{
+    char *line = NULL, *token;
+    size_t size = 0;
+    ssize_t readline;
+    FILE *arch;
+    void (*f)(stack_t **stack, unsigned int line_number);
+    int cont = 0;
+    stack_t *stack = NULL;
 
-	while (i < 4)
-	{
-		if (strcmp(s, func[i].opcode) == 0)
-		{
-			return (func[i].f);
-		}
-		i++;
-	}
-	printf("Error\n");
-	exit(99);
-
+    if(argc != 2)
+    {
+        fprintf(stderr, "USAGE: monty file");
+        return (EXIT_FAILURE);
+    }
+    arch = fopen(argv[1], "r");
+    if (!arch)
+    {
+    fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+    return (EXIT_FAILURE);
+    }
+    while((readline = getline(&line, &size, arch)))
+    {
+        cont++;
+        token = strtok(line, DELIM);
+        if (!token)
+        continue;
+        f = get_func(token);
+        if (!f)
+        {
+            fprintf(stderr, "L%u: unknown instruction %s\n", cont, token);
+            return (EXIT_FAILURE);
+        }
+        f(&stack, cont);
+    }
+    fclose(arch);
+    free(token);
+    frees(stack);
+    return(EXIT_SUCCESS);
 }
