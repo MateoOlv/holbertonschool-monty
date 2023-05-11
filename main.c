@@ -23,7 +23,6 @@ int main(int argc, char **argv)
 {
     char *line = NULL, *token;
     size_t size = 0;
-    ssize_t readline;
     FILE *arch;
     void (*f)(stack_t **stack, unsigned int line_number);
     int cont = 0;
@@ -40,7 +39,7 @@ int main(int argc, char **argv)
     fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
     return (EXIT_FAILURE);
     }
-    while((readline = getline(&line, &size, arch)))
+    while(getline(&line, &size, arch) != -1)
     {
         cont++;
         token = strtok(line, DELIM);
