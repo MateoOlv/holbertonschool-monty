@@ -4,6 +4,7 @@ void _push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *line = *stack;
 	char *token = strtok(NULL, DELIM);
+	int n2 = 0;
 
 	line = malloc(sizeof(stack_t));
 	if (!line) {
@@ -15,8 +16,8 @@ void _push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
-	line->n = atoi(token);
+	n2 = atoi(token);
+	line->n = n2;
 	line->prev = NULL;
 	line->next = *stack;
 	if (*stack) {
