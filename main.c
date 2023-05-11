@@ -19,7 +19,7 @@ void (*get_func(char *op))(stack_t **stack, unsigned int line_number)
     }
 	return func[i].f;
 }
-int monty_interpreter(int argc, char **argv)
+int main(int argc, char **argv)
 {
     char *line = NULL;
     char *token = NULL;
@@ -47,10 +47,10 @@ int monty_interpreter(int argc, char **argv)
         {
             continue;
         }
-        op_func = get_op_func(token);
+        op_func = get_func(token);
         if (!op_func)
         {
-            fprintf(stderr, "L%u: unknown instruction %s\n", token, line_number);
+            fprintf(stderr, "L%u: unknown instruction %s\n", line_number, token);
             exit(EXIT_FAILURE);
         }
         op_func(&stack, line_number);
