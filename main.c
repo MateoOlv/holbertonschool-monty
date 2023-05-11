@@ -10,14 +10,14 @@ void (*get_func(char *op))(stack_t **stack, unsigned int line_number)
         {"pint", _swap},
         {"pint", _add},
         {"pint", _nop},
-		{NULL, NULL}
+		{NULL, NULL},
 	};
     for (i = 0; func[i].opcode != NULL; i++)
     {
         if (strcmp(func[i].opcode, op) == 0)
             return func[i].f;
     }
-	exit(EXIT_FAILURE);
+	return func[i].f;
 }
 int main(int argc, char **argv)
 {
