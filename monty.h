@@ -50,6 +50,6 @@ void _nop(stack_t **stack, unsigned int line_number);
 void _swap(stack_t **stack, unsigned int line_number);
 void _add(stack_t **stack, unsigned int line_number);
 int _digit(char string[]);
-void frees(stack_t **stack);
+void frees(stack_t *stack);
 
 #endif
