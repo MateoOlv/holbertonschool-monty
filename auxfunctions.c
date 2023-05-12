@@ -15,8 +15,8 @@ int _digit(char string[])
 		return (0);
 	for (i = 0; string[i]; i++)
 	{
-		if (string[i] == '-')
-			i++;
+		if (string[0] == '-')
+			string[0] == '0';
 		if (isdigit(string[i]) == 0)
 			return (0);
 		i++;
