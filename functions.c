@@ -12,7 +12,6 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	char *token = strtok(NULL, DELIM);
-	int n2 = 0;
 
 	if (!token || _digit(token) == 0)
 	{
@@ -20,7 +19,7 @@ void _push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	
-	n2 = atoi(token);
+	int n2 = atoi(token);
 
 	stack_t *line = malloc(sizeof(stack_t));
 	if (!line)
@@ -31,12 +30,11 @@ void _push(stack_t **stack, unsigned int line_number)
 	
 	line->n = n2;
 	line->prev = NULL;
-	line->next = NULL;
+	line->next = *stack;
 
 	if (*stack)
 	{	
 		(*stack)->prev = line;
-		line->next = *stack;
 	}
 
 	*stack = line;
