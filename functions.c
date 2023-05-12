@@ -12,14 +12,15 @@
 void _push(stack_t **stack, unsigned int line_number)
 {
 	char *token = strtok(NULL, DELIM);
+	int n2 = 0;
 
-	if (!token || _digit(token) == 0)
+	if (!token || _digit(token) == 0 || !stack)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	
-	int n2 = atoi(token);
+	 n2 = atoi(token);
 
 	stack_t *line = malloc(sizeof(stack_t));
 	if (!line)
