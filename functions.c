@@ -1,4 +1,14 @@
 #include "monty.h"
+
+/**
+ * _push - Adds a new node at the beginning of a stack_t stack.
+ *
+ * @stack: Double pointer to the head of the stack.
+ * @line_number: The current line number in the Monty bytecode file.
+ *
+ * Return: Nothing.
+ */
+
 void _push(stack_t **stack, unsigned int line_number)
 {
 	char *token = strtok(NULL, DELIM);
@@ -21,12 +31,14 @@ void _push(stack_t **stack, unsigned int line_number)
 	
 	line->n = n2;
 	line->prev = NULL;
-	line->next = *stack;
+	line->next = NULL;
 
 	if (*stack)
-	{
+	{	
 		(*stack)->prev = line;
+		line->next = *stack;
 	}
+
 	*stack = line;
 }
 
