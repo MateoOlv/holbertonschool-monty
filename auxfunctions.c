@@ -2,7 +2,7 @@
 
 /**
  * _digit - Checks if a string is a digit
- * @string: The string to check
+ * @string: Thee string to check
  *
  * Return: 1 if @string is a digit, 0 otherwise
  */
