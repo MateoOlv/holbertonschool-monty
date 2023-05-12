@@ -1,27 +1,24 @@
 #include "monty.h"
-/**
- * _push - Adds a new node at the beginning of a doubly linked list
- * @stack: Pointer to the head of the doubly linked list
- * @line_number: Number of the line in the script file
- */
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *line = *stack;
 	char *token = strtok(NULL, DELIM);
 	int n2 = 0;
 
-	line = malloc(sizeof(stack_t));
+	if (!token || _digit(token) == 0 || !stack)
+	{
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	
+	n2 = atoi(token);
+
+	stack_t *line = malloc(sizeof(stack_t));
 	if (!line)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	if (!token || _digit(token) == 0 || !(*stack))
-	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-	n2 = atoi(token);
+	
 	line->n = n2;
 	line->prev = NULL;
 	line->next = *stack;
