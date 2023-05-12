@@ -15,6 +15,12 @@ void _push(stack_t **stack, unsigned int line_number)
 	stack_t *line;
 	int n2 = 0;
 
+	line = malloc(sizeof(stack_t));
+	if (!line)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	if (!token || _digit(token) == 0 || !stack)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
@@ -22,19 +28,12 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 	
 	 n2 = atoi(token);
-
-	line = malloc(sizeof(stack_t));
-	if (!line)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
 	
 	line->n = n2;
 	line->prev = NULL;
 	line->next = *stack;
 
-	if (line->next !=NULL)
+	if (line->next != NULL)
 	{	
 		(line->next)->prev = line;
 	}
@@ -51,12 +50,6 @@ void _pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *line = *stack;
 	(void)line_number;
-	if (!(*stack))
-		return;
-	while (line->next)
-	{
-		line = line->next;
-	}
 	while (line)
 	{
 		printf("%d\n", line->n);
