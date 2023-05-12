@@ -14,7 +14,7 @@ void _push(stack_t **stack, unsigned int line_number)
 	char *token = strtok(NULL, DELIM);
 	int n2 = 0;
 
-	if (!token || _digit(token) == 0 || !stack)
+	if (!token || _digit(token) == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
