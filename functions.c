@@ -19,22 +19,23 @@ void _push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	
+
 	 n2 = atoi(token);
 
 	stack_t *line = malloc(sizeof(stack_t));
+
 	if (!line)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
-	
+
 	line->n = n2;
 	line->prev = NULL;
 	line->next = *stack;
 
 	if (*stack)
-	{	
+	{
 		(*stack)->prev = line;
 	}
 
